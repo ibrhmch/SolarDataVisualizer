@@ -2,4 +2,4 @@
 This App displays Geo Tagged solar data on a Map.
 
 
-*Starterted: 12/1/2023*
+*Started: 12/1/2023*
