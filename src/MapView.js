@@ -17,25 +17,26 @@ const dataPoints = [
 ];
 
 const MapView = () => {
-    const [mapCenter, setMapCenter] = useState([39.73887641288653, -104.98464946096463]);
-    const [position, setPosition] = useState([]);
+    const [mapCenter, setMapCenter] = useState([40.007259752621174, -105.26350055410776]);
+    const [position, setPosition] = useState([...dataPoints]);
 
-    function LocationMarker() {
-        const map = useMapEvents({
-            click() {
-                setPosition([...dataPoints]);
-                console.log(position);
-                setMapCenter([40.007259752621174, -105.26350055410776])
-                map.flyTo([40.007259752621174, -105.26350055410776], map.getZoom());
-            }
-        });
+    // Adds Points and moves the map to a position when clicked
+    // function LocationMarker() {
+    //     const map = useMapEvents({
+    //         click() {
+    //             setPosition([...dataPoints]);
+    //             console.log(position);
+    //             setMapCenter([40.007259752621174, -105.26350055410776])
+    //             map.flyTo([40.007259752621174, -105.26350055410776], map.getZoom());
+    //         }
+    //     });
 
-        return position.length === 0 ? null : position.map((point) => (
-            <Marker key={point.id} position={point.position} icon={customIcon}>
-                <Popup>{point.info}</Popup>
-            </Marker>
-        ));
-    }
+    //     return position.length === 0 ? null : position.map((point) => (
+    //         <Marker key={point.id} position={point.position} icon={customIcon}>
+    //             <Popup>{point.info}</Popup>
+    //         </Marker>
+    //     ));
+    // }
 
     return (
         <div>
@@ -45,7 +46,12 @@ const MapView = () => {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     />
-                    <LocationMarker />
+                    {
+                        position.map((point) => (
+                            <Marker key={point.id} position={point.position} icon={customIcon}>
+                                <Popup>{point.info}</Popup>
+                            </Marker>))
+                    }
                 </MapContainer>
             </div>
         </div>
