@@ -12,9 +12,6 @@ const customIcon = new Icon({
 const MapView = ({ dataPoints = {} }) => {
     const [mapCenter, setMapCenter] = useState([40.007259752621174, -105.26350055410776]);
 
-    console.log(dataPoints);
-    console.log(Object.keys(dataPoints).length);
-
     return (
         <div>
             {Object.keys(dataPoints).length > 0 && (

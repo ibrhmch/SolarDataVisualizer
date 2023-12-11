@@ -3,7 +3,6 @@ import io from 'socket.io-client';
 import MapView from './MapView';
 
 const App = () => {
-    const [newInfo, setNewInfo] = useState('Default Value');
     const [socket, setSocket] = useState(null);
     const [dataPoints, setDataPoints] = useState({});
     const [number, setNumber] = useState(0);
@@ -13,7 +12,10 @@ const App = () => {
         setSocket(newSocket);
 
         newSocket.on('new_number', (data) => {
-            setNewInfo(data.number);
+            const newDataPoints = { ...dataPoints };
+            newDataPoints[data.panelId] = { ...dataPoints[data.panelId], powerKw: data.powerKw }
+
+            setDataPoints({ ...newDataPoints });
 
             setNumber(prev => prev + 1);
         });
