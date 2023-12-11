@@ -5,19 +5,23 @@ import MapView from './MapView';
 const App = () => {
     const [socket, setSocket] = useState(null);
     const [dataPoints, setDataPoints] = useState({});
-    const [number, setNumber] = useState(0);
 
     useEffect(() => {
         const newSocket = io('http://localhost:5001');
         setSocket(newSocket);
 
-        newSocket.on('new_number', (data) => {
-            const newDataPoints = { ...dataPoints };
-            newDataPoints[data.panelId] = { ...dataPoints[data.panelId], powerKw: data.powerKw }
+        newSocket.on('NewPanelData', (data) => {
+            console.log(data);
 
-            setDataPoints({ ...newDataPoints });
+            // newDatasPoints[data.panelId] = { ...dataPoints[data.panelId], powerKw: data.powerKw }
 
-            setNumber(prev => prev + 1);
+            setDataPoints(prevDataPoints => {
+                const newDataPoints = { ...prevDataPoints };
+                newDataPoints[data.panelId] = { ...prevDataPoints[data.panelId], powerKw: data.powerKw }
+
+                return newDataPoints;
+            });
+
         });
 
         fetch('http://localhost:3002/get_panels')
@@ -27,14 +31,11 @@ const App = () => {
             })
             .catch(error => console.error('Error fetching data:', error));
 
-        setNumber(prev => prev + 1);
-
         return () => newSocket.close();
     }, []);
 
     return (
         <div>
-            {number}
             <MapView dataPoints={dataPoints} />
         </div>
     );
