@@ -15,25 +15,27 @@ const MapView = ({ dataPoints = {} }) => {
     return (
         <div>
             {Object.keys(dataPoints).length > 0 && (
-                <div className="flex justify-center items-center w-screen h-screen">
-                    <MapContainer center={mapCenter} zoom={13} style={{ height: '70vh', width: '70%' }}>
-                        <TileLayer
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        />
-                        {Object.entries(dataPoints).map(([panelId, details]) => (
-                            < Marker key={panelId} position={[details.latitude, details.longitude]} icon={customIcon} >
-                                <Popup>
-                                    <div key={panelId}>
-                                        <h3>Panel ID: {panelId}</h3>
-                                        <p>Name: {details.name}</p>
-                                        <p>Power Produced: {details.powerKw}</p>
-                                    </div>
-                                </Popup>
-                            </Marker>
+                <div className="flex justify-center items-center w-full">
+                    <div className="shadow-2xl" style={{ height: '70vh', width: '90%' }}>
+                        <MapContainer center={mapCenter} zoom={13} style={{ height: '100%', width: '100%' }}>
+                            <TileLayer
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            />
+                            {Object.entries(dataPoints).map(([panelId, details]) => (
+                                <Marker key={panelId} position={[details.latitude, details.longitude]} icon={customIcon} >
+                                    <Popup>
+                                        <div key={panelId}>
+                                            <h3>Panel ID: {panelId}</h3>
+                                            <p>Name: {details.name}</p>
+                                            <p>Power Produced: {details.powerKw}</p>
+                                        </div>
+                                    </Popup>
+                                </Marker>
 
-                        ))}
-                    </MapContainer>
+                            ))}
+                        </MapContainer>
+                    </div>
                 </div>
             )
             }
