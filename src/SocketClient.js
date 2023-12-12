@@ -34,8 +34,8 @@ const App = () => {
 
     return (
         <div>
-            <div className='flex justify-center items-center w-full' >
-                <h1 className="text-center text-4xl font-medium italic p-10">Solar Panel Data</h1>
+            <div className='flex justify-center items-center w-full py-8 my-2 bg-gray-500 text-white' >
+                <h1 className="text-center text-4xl font-normal italic">Solar Panel Data Visualizer</h1>
             </div>
 
             <div className="flex justify-center items-center w-screen">
