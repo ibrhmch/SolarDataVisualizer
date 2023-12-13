@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import MapView from './MapView';
 
+const mapCenter = [40.007259752621174, -105.26350055410776]
+
 const App = () => {
     const [socket, setSocket] = useState(null);
     const [dataPoints, setDataPoints] = useState({});
 
     useEffect(() => {
+        // const newSocket = io('http://localhost/socket-server/', { path: '/socket-server/socket.io', transports: ['websocket'] });
         const newSocket = io('http://localhost:5001');
         setSocket(newSocket);
 
@@ -32,10 +35,14 @@ const App = () => {
         return () => newSocket.close();
     }, []);
 
+    if (Object.keys(dataPoints).length > 0) {
+        console.log(dataPoints);
+    }
+
     return (
         <div>
             <div className='flex justify-center items-center w-full py-8 my-2 bg-gray-500 text-white' >
-                <h1 className="text-center text-4xl font-normal italic">Solar Panel Data Visualizer</h1>
+                <h1 className="text-center text-3xl font-normal italic">Solar Panel Data Visualizer</h1>
             </div>
 
             <div className="flex justify-center items-center w-screen">

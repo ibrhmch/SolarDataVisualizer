@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 
 import 'leaflet/dist/leaflet.css';
@@ -9,9 +9,7 @@ const customIcon = new Icon({
     iconSize: [25, 25], // Size of the icon
 });
 
-const MapView = ({ dataPoints = {} }) => {
-    const [mapCenter, setMapCenter] = useState([40.007259752621174, -105.26350055410776]);
-
+const MapView = ({ dataPoints = {}, mapCenter = [40.007259752621174, -105.26350055410776] }) => {
     return (
         <div>
             {Object.keys(dataPoints).length > 0 && (
