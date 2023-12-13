@@ -10,9 +10,6 @@ const App = () => {
 
     useEffect(() => {
         // Define the Socket.IO server URL
-        // const serverUrl = 'http://localhost/socket/';
-
-
         const serverUrl = 'http://localhost:5001/';
         const newSocket = io(serverUrl);
 

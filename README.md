@@ -45,5 +45,12 @@ The application should now be running on [localhost:3000](http://localhost:3000)
 Open your browser and navigate to [localhost:3000](http://localhost:3000).
 
 
+# To use the Dockerfile and spin up a container
+1- Build the image
+`docker build -t reactapp .`
+
+2- Create a container and forward the port using:
+`docker run -p 8080:80 reactapp`
+
 
 *Started: 12/1/2023*
