@@ -10,8 +10,10 @@ const App = () => {
 
     useEffect(() => {
         // Define the Socket.IO server URL
-        const serverUrl = '/frontend/socket';
-        const newSocket = io(serverUrl, { path: '/socket/socket.io', transports: ['websocket'] });
+        // const serverUrl = '/frontend/socket';
+        // const newSocket = io(serverUrl, { path: '/frontend/socket/connect/socket.io', transports: ['websocket'] });
+
+        const newSocket = io('http://socket:5001', { transports: ['websocket'] });
 
         setSocket(newSocket);
 
