@@ -9,8 +9,13 @@ const App = () => {
     const [dataPoints, setDataPoints] = useState({});
 
     useEffect(() => {
-        // const newSocket = io('http://localhost/socket-server/', { path: '/socket-server/socket.io', transports: ['websocket'] });
-        const newSocket = io('http://localhost:5001');
+        // Define the Socket.IO server URL
+        // const serverUrl = 'http://localhost/socket/';
+
+
+        const serverUrl = 'http://localhost:5001/';
+        const newSocket = io(serverUrl);
+
         setSocket(newSocket);
 
         newSocket.on('NewPanelData', (data) => {
@@ -25,7 +30,7 @@ const App = () => {
 
         });
 
-        fetch('http://localhost:3002/get_panels')
+        fetch('http://localhost/get_panels')
             .then(response => response.json())
             .then(data => {
                 setDataPoints({ ...data });
