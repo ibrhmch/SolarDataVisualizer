@@ -5,7 +5,7 @@ import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const customIcon = new Icon({
-    iconUrl: '/mapMarker.png', // Replace with the path to your image
+    iconUrl: '/frontend/mapMarker.png', // Replace with the path to your image
     iconSize: [25, 25], // Size of the icon
 });
 

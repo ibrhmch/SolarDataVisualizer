@@ -10,8 +10,8 @@ const App = () => {
 
     useEffect(() => {
         // Define the Socket.IO server URL
-        const serverUrl = 'http://localhost:5001/';
-        const newSocket = io(serverUrl);
+        const serverUrl = '/frontend/socket';
+        const newSocket = io(serverUrl, { path: '/socket/socket.io', transports: ['websocket'] });
 
         setSocket(newSocket);
 
@@ -27,7 +27,7 @@ const App = () => {
 
         });
 
-        fetch('http://localhost/get_panels')
+        fetch('/frontend/get_panels')
             .then(response => response.json())
             .then(data => {
                 setDataPoints({ ...data });
